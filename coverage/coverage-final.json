@@ -1,0 +1,2 @@
+{"/Users/valdimar/4semester/Vefforritun 2/Verkefni1/src/parser.js": {"path":"/Users/valdimar/4semester/Vefforritun 2/Verkefni1/src/parser.js","statementMap":{"0":{"start":{"line":3,"column":4},"end":{"line":3,"column":34}}},"fnMap":{"0":{"name":"parse","decl":{"start":{"line":1,"column":16},"end":{"line":1,"column":21}},"loc":{"start":{"line":2,"column":0},"end":{"line":4,"column":1}},"line":2}},"branchMap":{},"s":{"0":1},"f":{"0":1},"b":{},"_coverageSchema":"1a1c01bbd47fc00a2c39e90264f33305004495a9","hash":"8fd43f80b198446652baadd6abebfbb510643598"}
+}

@@ -1,0 +1,20 @@
+{
+  "name": "verkefni1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "NODE_OPTIONS='--experimental-vm-modules' jest ./src/test/*.js",
+    "build": "node ./src/build.js && cpy public dist"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^27.4.7"
+  },
+  "dependencies": {
+    "cpy-cli": "^3.1.1",
+    "gray-matter": "^4.0.3",
+    "marked": "^4.0.10"
+  }
+}
