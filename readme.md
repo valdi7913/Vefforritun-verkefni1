@@ -25,10 +25,6 @@ Helstu tól sem voru notuð voru:<br>
  * Concurrently fyrir concurrency<br>
  * Simple-statistics fyrir gagnavinnslu<br>
 
-
-### Lestur á gögnum
-
-
 ### Test
 
 Í *./src/test* má fynna öll test fyrir virni verkefnisins. 100% line coverage achieved!
