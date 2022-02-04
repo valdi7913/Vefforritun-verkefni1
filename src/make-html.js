@@ -45,7 +45,7 @@ ${makeData(content, numbers)}
 
 export function makeData(content, numbers) {
   if (content !== undefined) {
-    const template = `      <section>
+    var template = `      <section>
         <table>
           <thead>
             <tr>
@@ -74,7 +74,7 @@ export function makeData(content, numbers) {
         </table>
       </section>
       `;
-    if (numbers != []) return template + `<div class = "tolur">${numbers.join(', ')}</div>`;
+    template += `<div class = "tolur">${numbers.join(', ')}</div>`;
     return template;
   } else
     return '      <section> Engin sýnileg gögn eru í þessari skrá </section>';

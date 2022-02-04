@@ -189,7 +189,8 @@ describe('html', () => {
 
   it('makeData, empty test', () => {
     const content = undefined;
-    const template = makeData(content);
+    const numbers = [];
+    const template = makeData(content, numbers);
     const expected =
       '      <section> Engin sýnileg gögn eru í þessari skrá </section>';
     expect(template).toEqual(expected);
