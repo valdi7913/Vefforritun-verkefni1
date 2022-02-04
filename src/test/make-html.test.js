@@ -112,7 +112,7 @@ describe('html', () => {
           </tbody>
         </table>
       </section>
-      <div>1, 1, 1, 1, 1, 1, 1, 1</div>
+      <div class = "tolur">1, 1, 1, 1, 1, 1, 1, 1</div>
     </main>
   </body>
 </html>
@@ -183,7 +183,7 @@ describe('html', () => {
           </tbody>
         </table>
       </section>
-      <div>1, 2, 3, 4, 5, 6, 7, 8, 9, 10</div>`;
+      <div class = "tolur">1, 2, 3, 4, 5, 6, 7, 8, 9, 10</div>`;
     expect(template).toEqual(expected);
   });
 

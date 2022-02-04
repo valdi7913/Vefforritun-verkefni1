@@ -74,7 +74,7 @@ export function makeData(content, numbers) {
         </table>
       </section>
       `;
-    if (numbers != []) return template + `<div>${numbers.join(', ')}</div>`;
+    if (numbers != []) return template + `<div class = "tolur">${numbers.join(', ')}</div>`;
     return template;
   } else
     return '      <section> Engin sýnileg gögn eru í þessari skrá </section>';
