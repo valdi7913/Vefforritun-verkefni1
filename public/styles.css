@@ -1,6 +1,42 @@
-section
-{
-    margin: 0  auto;
-    max-width: 1000px;
+html {
+  width: 100%;
 }
 
+body {
+  width: 100%;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 0 auto;
+  width: 80%;
+}
+
+/*center h1 and h2*/
+h1,
+h2 {
+  text-align: center;
+}
+
+section {
+  margin: 0 auto;
+  width: auto;
+}
+
+ol {
+  align-items: left;
+  margin: 0 auto;
+  padding: 0;
+  width: auto;
+}
+
+table {
+  margin: 0 auto;
+  width: auto;
+}
+
+th {
+  padding: 1em;
+}

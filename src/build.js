@@ -1,37 +1,31 @@
 import { join } from 'path';
-import {readFile, writeFile, readdir, stat } from 'fs/promises';
+import { writeFile, readdir, stat } from 'fs/promises';
 
-import {parse} from './parser.js';
-import { blogTemplate, makeHTML } from './make-html.js';
+import { readNumberFile, parseData } from './parser.js';
+import { dataTemplate, indexTemplate } from './make-html.js';
 
-// import marked from 'marked';
-
-// import {makeHTML} from './make-html.js';
-
-const BLOG_DIR = 'blog';
 const OUTPUT_DIR = './dist';
+const DATA_DIR = './data';
 
 async function main() {
-    const files = await readdir(BLOG_DIR);
-    
-    for(const file of files) {
-        const path = join(BLOG_DIR, file);
-        const info = await stat(path);    
-        if(info.isDirectory()) {
-            continue;
-        }
+  //Create index.html
+  const files = await readdir(DATA_DIR);
+  const indexHtml = await indexTemplate(files);
+  await writeFile(join(OUTPUT_DIR, 'index.html'), indexHtml);
 
-        const data = await readFile(path);
-        // console.log('data :>> ', data.toString());
-        const parsed = parse(data.toString());
-        const html = makeHTML(parsed);
-        const blog = blogTemplate(parsed.metadata.title,html,parsed.metadata.date);
-        const slug = parsed.metadata.slug;
-        console.log('slug :>> ', slug);
-        const filename = join(OUTPUT_DIR, `${slug}.html`)
-
-        await writeFile(filename, blog);
-    }
+  //Create data files
+  for (const file of files) {
+    const path = join(DATA_DIR, file);
+    const info = await stat(path);
+    if (info.isDirectory()) continue;
+    const data = await readNumberFile(path);
+    console.log('file :>> ', file);
+    console.log('data :>> ', data);
+    const parsed = parseData(data);
+    const content = dataTemplate(file,parsed);
+    const outputpath = join(OUTPUT_DIR, `${file}.html`);
+    await writeFile(outputpath, content);
+  }
 }
 
 main().catch((err) => console.error(err));

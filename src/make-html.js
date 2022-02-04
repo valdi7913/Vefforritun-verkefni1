@@ -1,39 +1,76 @@
-export function makeHTML(input) {
-    const html = input.content;
-    const date = input.metadata.date;
-
-    const template = 
-    `
-    <section>
-        ${html}
-        <p>Skrifað: ${date}</p>
-    </section>
-    `
-   
-    return template;
+export function indexTemplate(files) {
+  const template =
+  `<!doctype>
+    <html>
+      <head>
+        <title> index </title>
+        <link rel="stylesheet" href = "styles.css">
+      </head>
+      <body>
+        <h2> Welcome, please select a file to view </h2>
+        <main>
+${makeLinks(files)}
+        </main>
+      </body>
+    </html>`;
+  return template;
 }
 
-/**
- * Takes HTML for a single blog entry and returns it with the site template
- */
-export function blogTemplate(title, content, date){
-    
-    const template = 
-    `
-    <!doctype>
-    <html>
-        <head>
-            <title> ${title} </title>
-            <link rel="stylesheet" href = "styles.css">
-        </head>
-        <body>
-            <section>
-                ${content}
-                <p>Skrifað: ${date}</p>
-            </section>
-        </body>
-    </html
-    `;
+export function makeLinks(files) {
+  let links = '';
+  if(files.length > 0) {
+    for (const file of files) {
+      links += `          <section> <a href = '${file}.html'> ${file} </a> </section>\n`;
+    }
+    return links.substring(0, links.lastIndexOf("\n"));;
+  } else return '';
+}
 
+export function dataTemplate(filename, content) {
+  const template = `<!doctype>
+<html>
+  <head>
+    <title> ${filename} </title>
+    <link rel="stylesheet" href = "styles.css">
+  </head>
+  <body>
+    <h1> ${filename} </h1>
+    <main>
+${makeData(content)}
+    </main>
+  </body>
+</html>
+`;
+  return template;
+}
+
+export function makeData(content)
+{
+  if(content !== undefined) {
+    const template =`      <section>
+        <table>
+          <tr>
+            <th> Max </th>
+            <th> Min </th>
+            <th> Mean </th>
+            <th> Median </th>
+            <th> StDev </th>
+            <th> Sum </th>
+            <th> Range </th>
+            <th> Variance </th>
+          </tr>
+          <tr>
+            <td> ${content.Max} </td>
+            <td> ${content.Min} </td>
+            <td> ${content.Mean} </td>
+            <td> ${content.Median} </td>
+            <td> ${content.Stdev} </td>
+            <td> ${content.Sum} </td>
+            <td> ${content.Range} </td>
+            <td> ${content.Variance} </td>
+          </tr>
+        </table>
+      </section>`;
     return template;
+  } else return '      <section> Engin sýnileg gögn eru í þessari skrá </section>';
 }
