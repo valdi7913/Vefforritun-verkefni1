@@ -1,5 +1,7 @@
 import { describe, test, expect, it } from '@jest/globals';
-import { readNumberFile, superFloatParser , parseData } from '../parser';
+import { readNumberFile } from '../reader';
+import { superFloatParser } from '../parser';
+import { calculateStats } from '../calculator';
 
 describe('parser', () => {
   it('superFloatParser symbols and comment', () => {
@@ -13,7 +15,7 @@ describe('parser', () => {
   it('superFloatParser separator without decimals', () => {
     const input = '100.100';
     const parsed = superFloatParser(input);
-    const expected = 100.100;
+    const expected = 100.1;
 
     expect(parsed).toBe(expected);
   });
@@ -77,32 +79,31 @@ describe('parser', () => {
     const parsed = superFloatParser(input);
     const expected = 65000;
     expect(parsed).toBe(expected);
-
   });
 });
-describe('parseData', () => {
-  it('parseData, valid data', () => {
+describe('calculateStats', () => {
+  it('calculateStats, valid data', () => {
     const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    const parsed = parseData(numbers);
+    const parsed = calculateStats(numbers);
     const expected = {
-        Max: '10.00',
-        Min: '1.00',
-        Mean: '5.50',
-        Median: '5.50',
-        Stdev: '2.87',
-        Sum: '55.00',
-        Range: '9.00',
-        Variance: '8.25',
-      };
-      expect(parsed).toEqual(expected);
-    });
+      Max: '10.00',
+      Min: '1.00',
+      Mean: '5.50',
+      Median: '5.50',
+      Stdev: '2.87',
+      Sum: '55.00',
+      Range: '9.00',
+      Variance: '8.25',
+    };
+    expect(parsed).toEqual(expected);
+  });
 
-  it('parseData, no data', () => {
+  it('calculateStats, no data', () => {
     const numbers = [];
-    const parsed = parseData(numbers);
+    const parsed = calculateStats(numbers);
     const expected = undefined;
     expect(parsed).toEqual(expected);
-    });
+  });
 });
 
 describe('readNumberFile', () => {
@@ -110,12 +111,10 @@ describe('readNumberFile', () => {
     const file = 'src/test/testcase/test.txt';
     const expected = [1, 2, 3, 4, 5];
     await expect(readNumberFile(file)).resolves.toStrictEqual(expected);
-
-    });
+  });
 
   test('readNumnberFile, invalid data', async () => {
     const file = 'src/test/testcase/fails.txt';
     await expect(readNumberFile(file)).rejects.toThrow();
   });
 });
-

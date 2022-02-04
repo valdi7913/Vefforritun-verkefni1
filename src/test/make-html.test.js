@@ -1,15 +1,19 @@
 import { describe, expect, it } from '@jest/globals';
-import { indexTemplate, makeLinks, dataTemplate, makeData} from '../make-html';
+import {
+  dataTemplate,
+  indexTemplate,
+  makeData,
+  makeLinks,
+} from '../make-html.js';
 
 describe('html', () => {
-  it('indexTemplate, basic test' , () => {
+  it('indexTemplate, basic test', () => {
     const files = ['file1.txt', 'file2.txt'];
     const template = indexTemplate(files);
-    const expected =
-  `<!doctype>
+    const expected = `<!doctype>
     <html>
       <head>
-        <title> index </title>
+        <title> Gagnavinnsla </title>
         <link rel="stylesheet" href = "styles.css">
       </head>
       <body>
@@ -23,14 +27,13 @@ describe('html', () => {
     expect(template).toBe(expected);
   });
 
-  it('indexTemplate, empty test' , () => {
+  it('indexTemplate, empty test', () => {
     const files = [];
     const template = indexTemplate(files);
-    const expected =
-    `<!doctype>
+    const expected = `<!doctype>
     <html>
       <head>
-        <title> index </title>
+        <title> Gagnavinnsla </title>
         <link rel="stylesheet" href = "styles.css">
       </head>
       <body>
@@ -40,14 +43,13 @@ describe('html', () => {
         </main>
       </body>
     </html>`;
-  expect(template).toBe(expected);
-});
+    expect(template).toBe(expected);
+  });
 
   it('makeLinks, basic test', () => {
     const files = ['file1.txt', 'file2.txt'];
     const template = makeLinks(files);
-    const expected =
-`          <section> <a href = 'file1.txt.html'> file1.txt </a> </section>
+    const expected = `          <section> <a href = 'file1.txt.html'> file1.txt </a> </section>
           <section> <a href = 'file2.txt.html'> file2.txt </a> </section>`;
     expect(template).toEqual(expected);
   });
@@ -56,23 +58,23 @@ describe('html', () => {
     const files = [];
     const template = makeLinks(files);
     const expected = '';
-  expect(template).toEqual(expected);
+    expect(template).toEqual(expected);
   });
 
   it('dataTemplate, basic test', () => {
-      const content = {
-        Max: 1,
-        Min: 1,
-        Mean: 1,
-        Median: 1,
-        Stdev: 1,
-        Sum: 1,
-        Range: 1,
-        Variance: 1,
-      };
-      const filename = 'file1.txt';
-      const template = dataTemplate(filename, content);
-      const expected = `<!doctype>
+    const content = {
+      Max: 1,
+      Min: 1,
+      Mean: 1,
+      Median: 1,
+      Stdev: 1,
+      Sum: 1,
+      Range: 1,
+      Variance: 1,
+    };
+    const filename = 'file1.txt';
+    const template = dataTemplate(filename, content);
+    const expected = `<!doctype>
 <html>
   <head>
     <title> file1.txt </title>
@@ -83,41 +85,44 @@ describe('html', () => {
     <main>
       <section>
         <table>
-          <tr>
-            <th> Max </th>
-            <th> Min </th>
-            <th> Mean </th>
-            <th> Median </th>
-            <th> StDev </th>
-            <th> Sum </th>
-            <th> Range </th>
-            <th> Variance </th>
-          </tr>
-          <tr>
-            <td> 1 </td>
-            <td> 1 </td>
-            <td> 1 </td>
-            <td> 1 </td>
-            <td> 1 </td>
-            <td> 1 </td>
-            <td> 1 </td>
-            <td> 1 </td>
-          </tr>
+          <thead>
+            <tr>
+              <th> Max </th>
+              <th> Min </th>
+              <th> Mean </th>
+              <th> Median </th>
+              <th> StDev </th>
+              <th> Sum </th>
+              <th> Range </th>
+              <th> Variance </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td> 1 </td>
+              <td> 1 </td>
+              <td> 1 </td>
+              <td> 1 </td>
+              <td> 1 </td>
+              <td> 1 </td>
+              <td> 1 </td>
+              <td> 1 </td>
+            </tr>
+          </tbody>
         </table>
       </section>
     </main>
   </body>
 </html>
 `;
-      expect(template).toBe(expected);
+    expect(template).toBe(expected);
   });
 
   it('dataTemplate, empty test', () => {
     const filename = 'file1.txt';
     const content = undefined;
     const template = dataTemplate(filename, content);
-    const expected =
-`<!doctype>
+    const expected = `<!doctype>
 <html>
   <head>
     <title> file1.txt </title>
@@ -146,28 +151,32 @@ describe('html', () => {
       Variance: 1,
     };
     const template = makeData(content);
-    const expected =`      <section>
+    const expected = `      <section>
         <table>
-          <tr>
-            <th> Max </th>
-            <th> Min </th>
-            <th> Mean </th>
-            <th> Median </th>
-            <th> StDev </th>
-            <th> Sum </th>
-            <th> Range </th>
-            <th> Variance </th>
-          </tr>
-          <tr>
-            <td> ${content.Max} </td>
-            <td> ${content.Min} </td>
-            <td> ${content.Mean} </td>
-            <td> ${content.Median} </td>
-            <td> ${content.Stdev} </td>
-            <td> ${content.Sum} </td>
-            <td> ${content.Range} </td>
-            <td> ${content.Variance} </td>
-          </tr>
+          <thead>
+            <tr>
+              <th> Max </th>
+              <th> Min </th>
+              <th> Mean </th>
+              <th> Median </th>
+              <th> StDev </th>
+              <th> Sum </th>
+              <th> Range </th>
+              <th> Variance </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td> ${content.Max} </td>
+              <td> ${content.Min} </td>
+              <td> ${content.Mean} </td>
+              <td> ${content.Median} </td>
+              <td> ${content.Stdev} </td>
+              <td> ${content.Sum} </td>
+              <td> ${content.Range} </td>
+              <td> ${content.Variance} </td>
+            </tr>
+          </tbody>
         </table>
       </section>`;
     expect(template).toEqual(expected);
@@ -176,7 +185,8 @@ describe('html', () => {
   it('makeData, empty test', () => {
     const content = undefined;
     const template = makeData(content);
-    const expected = '      <section> Engin sýnileg gögn eru í þessari skrá </section>';
+    const expected =
+      '      <section> Engin sýnileg gögn eru í þessari skrá </section>';
     expect(template).toEqual(expected);
   });
 });

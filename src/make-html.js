@@ -1,9 +1,8 @@
 export function indexTemplate(files) {
-  const template =
-  `<!doctype>
+  const template = `<!doctype>
     <html>
       <head>
-        <title> index </title>
+        <title> Gagnavinnsla </title>
         <link rel="stylesheet" href = "styles.css">
       </head>
       <body>
@@ -18,11 +17,11 @@ ${makeLinks(files)}
 
 export function makeLinks(files) {
   let links = '';
-  if(files.length > 0) {
+  if (files.length > 0) {
     for (const file of files) {
       links += `          <section> <a href = '${file}.html'> ${file} </a> </section>\n`;
     }
-    return links.substring(0, links.lastIndexOf("\n"));;
+    return links.substring(0, links.lastIndexOf('\n'));
   } else return '';
 }
 
@@ -44,33 +43,37 @@ ${makeData(content)}
   return template;
 }
 
-export function makeData(content)
-{
-  if(content !== undefined) {
-    const template =`      <section>
+export function makeData(content) {
+  if (content !== undefined) {
+    const template = `      <section>
         <table>
-          <tr>
-            <th> Max </th>
-            <th> Min </th>
-            <th> Mean </th>
-            <th> Median </th>
-            <th> StDev </th>
-            <th> Sum </th>
-            <th> Range </th>
-            <th> Variance </th>
-          </tr>
-          <tr>
-            <td> ${content.Max} </td>
-            <td> ${content.Min} </td>
-            <td> ${content.Mean} </td>
-            <td> ${content.Median} </td>
-            <td> ${content.Stdev} </td>
-            <td> ${content.Sum} </td>
-            <td> ${content.Range} </td>
-            <td> ${content.Variance} </td>
-          </tr>
+          <thead>
+            <tr>
+              <th> Max </th>
+              <th> Min </th>
+              <th> Mean </th>
+              <th> Median </th>
+              <th> StDev </th>
+              <th> Sum </th>
+              <th> Range </th>
+              <th> Variance </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td> ${content.Max} </td>
+              <td> ${content.Min} </td>
+              <td> ${content.Mean} </td>
+              <td> ${content.Median} </td>
+              <td> ${content.Stdev} </td>
+              <td> ${content.Sum} </td>
+              <td> ${content.Range} </td>
+              <td> ${content.Variance} </td>
+            </tr>
+          </tbody>
         </table>
       </section>`;
     return template;
-  } else return '      <section> Engin sýnileg gögn eru í þessari skrá </section>';
+  } else
+    return '      <section> Engin sýnileg gögn eru í þessari skrá </section>';
 }

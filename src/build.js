@@ -1,7 +1,7 @@
 import { join } from 'path';
 import { writeFile, readdir, stat } from 'fs/promises';
-
-import { readNumberFile, parseData } from './parser.js';
+import { readNumberFile } from './reader.js';
+import { calculateStats } from './calculator.js';
 import { dataTemplate, indexTemplate } from './make-html.js';
 
 const OUTPUT_DIR = './dist';
@@ -16,14 +16,18 @@ async function main() {
   //Create data files
   for (const file of files) {
     const path = join(DATA_DIR, file);
+
     const info = await stat(path);
     if (info.isDirectory()) continue;
+
     const data = await readNumberFile(path);
-    console.log('file :>> ', file);
-    console.log('data :>> ', data);
-    const parsed = parseData(data);
-    const content = dataTemplate(file,parsed);
+
+    const stats = calculateStats(data);
+
+    const content = dataTemplate(file, stats);
+
     const outputpath = join(OUTPUT_DIR, `${file}.html`);
+
     await writeFile(outputpath, content);
   }
 }
