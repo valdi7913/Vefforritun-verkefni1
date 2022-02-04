@@ -17,7 +17,7 @@ describe('html', () => {
         <link rel="stylesheet" href = "styles.css">
       </head>
       <body>
-        <h2> Welcome, please select a file to view </h2>
+        <h2> Gagnavinnsla </h2>
         <main>
           <section> <a href = 'file1.txt.html'> file1.txt </a> </section>
           <section> <a href = 'file2.txt.html'> file2.txt </a> </section>
@@ -37,7 +37,7 @@ describe('html', () => {
         <link rel="stylesheet" href = "styles.css">
       </head>
       <body>
-        <h2> Welcome, please select a file to view </h2>
+        <h2> Gagnavinnsla </h2>
         <main>
 
         </main>

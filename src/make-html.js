@@ -6,7 +6,7 @@ export function indexTemplate(files) {
         <link rel="stylesheet" href = "styles.css">
       </head>
       <body>
-        <h2> Welcome, please select a file to view </h2>
+        <h2> Gagnavinnsla </h2>
         <main>
 ${makeLinks(files)}
         </main>
