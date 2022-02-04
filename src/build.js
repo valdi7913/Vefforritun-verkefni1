@@ -24,7 +24,7 @@ async function main() {
 
     const stats = calculateStats(data);
 
-    const content = dataTemplate(file, stats);
+    const content = dataTemplate(file, stats, data);
 
     const outputpath = join(OUTPUT_DIR, `${file}.html`);
 

@@ -25,7 +25,7 @@ export function makeLinks(files) {
   } else return '';
 }
 
-export function dataTemplate(filename, content) {
+export function dataTemplate(filename, content, numbers) {
   const template = `<!doctype>
 <html>
   <head>
@@ -35,7 +35,7 @@ export function dataTemplate(filename, content) {
   <body>
     <h1> ${filename} </h1>
     <main>
-${makeData(content)}
+${makeData(content, numbers)}
     </main>
   </body>
 </html>
@@ -43,7 +43,7 @@ ${makeData(content)}
   return template;
 }
 
-export function makeData(content) {
+export function makeData(content, numbers) {
   if (content !== undefined) {
     const template = `      <section>
         <table>
@@ -72,7 +72,9 @@ export function makeData(content) {
             </tr>
           </tbody>
         </table>
-      </section>`;
+      </section>
+      `;
+    if (numbers != []) return template + `<div>${numbers.join(', ')}</div>`;
     return template;
   } else
     return '      <section> Engin sýnileg gögn eru í þessari skrá </section>';

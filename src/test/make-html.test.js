@@ -72,8 +72,9 @@ describe('html', () => {
       Range: 1,
       Variance: 1,
     };
+    const numbers = [1, 1, 1, 1, 1, 1, 1, 1];
     const filename = 'file1.txt';
-    const template = dataTemplate(filename, content);
+    const template = dataTemplate(filename, content, numbers);
     const expected = `<!doctype>
 <html>
   <head>
@@ -111,6 +112,7 @@ describe('html', () => {
           </tbody>
         </table>
       </section>
+      <div>1, 1, 1, 1, 1, 1, 1, 1</div>
     </main>
   </body>
 </html>
@@ -120,8 +122,9 @@ describe('html', () => {
 
   it('dataTemplate, empty test', () => {
     const filename = 'file1.txt';
+    const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     const content = undefined;
-    const template = dataTemplate(filename, content);
+    const template = dataTemplate(filename, content, numbers);
     const expected = `<!doctype>
 <html>
   <head>
@@ -150,7 +153,8 @@ describe('html', () => {
       Range: 1,
       Variance: 1,
     };
-    const template = makeData(content);
+    const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    const template = makeData(content, numbers);
     const expected = `      <section>
         <table>
           <thead>
@@ -178,7 +182,8 @@ describe('html', () => {
             </tr>
           </tbody>
         </table>
-      </section>`;
+      </section>
+      <div>1, 2, 3, 4, 5, 6, 7, 8, 9, 10</div>`;
     expect(template).toEqual(expected);
   });
 
